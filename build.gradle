@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+// https://mvnrepository.com/artifact/com.intuit.karate/karate-junit5
+    testImplementation group: 'com.intuit.karate', name: 'karate-junit5', version: '1.4.1'
+    // libreria de cucumber necesaria para el reporte
+// https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
+    implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.7.8'
+
+
+}
+// Para no tener que cambiar el classpath los feature y dejarlos en test/Java generico
+sourceSets{
+    test{
+        resources{
+            srcDir file('src/test/java')
+            exclude '**/*.java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
